@@ -1,0 +1,45 @@
+{% load static %}
+<div class="chat-header">
+    {% if other_user.profile_picture %}
+        <img src="{{ other_user.profile_picture.url }}" alt="{{ other_user.username }}" class="conversation-avatar">
+    {% else %}
+        <img src="{% static 'images/default_avatar.svg' %}" alt="{{ other_user.username }}" class="conversation-avatar">
+    {% endif %}
+    <div class="conversation-name">{{ other_user.get_full_name|default:other_user.username }}</div>
+</div>
+<div class="chat-messages" id="chat-messages">
+    {% for message in conversation %}
+        <div class="message {% if message.sender == user %}sender{% else %}receiver{% endif %}">
+            {% if message.sender != user %}
+                {% if other_user.profile_picture %}
+                    <img src="{{ other_user.profile_picture.url }}" alt="{{ other_user.username }}" class="message-avatar">
+                {% else %}
+                    <img src="{% static 'images/default_avatar.svg' %}" alt="{{ other_user.username }}" class="message-avatar">
+                {% endif %}
+            {% endif %}
+            <div class="message-content">
+                <div>{{ message.content }}</div>
+                <div class="message-timestamp">{{ message.timestamp|date:"M d, g:i A" }}</div>
+            </div>
+            {% if message.sender == user %}
+                {% if user.profile_picture %}
+                    <img src="{{ user.profile_picture.url }}" alt="{{ user.username }}" class="message-avatar">
+                {% else %}
+                    <img src="{% static 'images/default_avatar.svg' %}" alt="{{ user.username }}" class="message-avatar">
+                {% endif %}
+            {% endif %}
+        </div>
+    {% empty %}
+        <p class="text-center text-muted">No messages yet. Start the conversation!</p>
+    {% endfor %}
+</div>
+<div class="chat-input">
+    <form method="post" action="{% url 'send_message' %}" id="send-message-form">
+        {% csrf_token %}
+        <input type="hidden" name="receiver" value="{{ other_user.id }}">
+        <div class="input-group">
+            <textarea name="content" class="form-control" rows="1" placeholder="Type your message..."></textarea>
+            <button type="submit" class="btn btn-primary">Send</button>
+        </div>
+    </form>
+</div>

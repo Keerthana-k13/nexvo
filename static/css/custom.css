@@ -1,0 +1,427 @@
+/* Header Styling */
+.navbar-brand {
+    font-size: 1.8rem; /* Increase font size */
+    font-weight: bold; /* Make it bolder */
+}
+
+.nav-link {
+    font-size: 1.1rem; /* Increase font size for navigation links */
+}
+
+/* Buttons */
+.btn-custom {
+    background: linear-gradient(135deg, #ff9966, #ff5e62);
+    border: none !important;
+    border-top: none !important; /* Added for debugging */
+    border-bottom: none !important; /* Added for debugging */
+    color: white;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    outline: none !important;
+    box-shadow: 0 0 0 1px #ff9966 !important; /* Added to cover potential artifact */
+    border-radius: 0 !important; /* Added to remove potential rounding artifacts */
+    text-decoration: none !important; /* Added to remove any potential underline */
+    transform: translateZ(0); /* Added to force new rendering layer */
+    margin: -1px; /* Added to try to eliminate sub-pixel gaps */
+}
+.btn-custom:hover {
+    background: linear-gradient(135deg, #ff5e62, #ff9966);
+    transform: scale(1.05);
+    color: white;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.btn-custom:focus {
+    outline: 0 !important;
+    box-shadow: none !important;
+}
+
+/* Custom File Input */
+.custom-file {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    height: calc(1.5em + .75rem + 2px); /* Match form-control height */
+    margin-bottom: 0;
+}
+
+.custom-file-input {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: calc(1.5em + .75rem + 2px); /* Match form-control height */
+    margin: 0;
+    opacity: 0;
+}
+
+.custom-file-label {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1;
+    height: calc(1.5em + .75rem + 2px); /* Match form-control height */
+    padding: .375rem .75rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    cursor: pointer;
+}
+
+.custom-file-label::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 3;
+    display: block;
+    height: calc(1.5em + .75rem);
+    padding: .375rem .75rem;
+    line-height: 1.5;
+    color: #495057;
+    content: "Browse";
+    background-color: #e9ecef;
+    border-left: inherit;
+    border-radius: 0 .25rem .25rem 0;
+}
+
+/* Poster Hover Effect */
+.big-banner {
+    overflow: hidden; /* Ensures the scaled image doesn't overflow */
+}
+
+.big-banner img {
+    transition: transform 0.3s ease-in-out;
+}
+
+.big-banner img:hover {
+    transform: scale(1.03);
+}
+
+.wide-poster-card-body .wide-poster-btn {
+    margin-top: -10px; /* Adjust this value to move the button up */
+}
+
+.event-card {
+    overflow: hidden; /* Ensures the scaled image doesn't overflow */
+    border-radius: 8px; /* Rounded corners for event cards */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    transition: all 0.3s ease; /* Smooth transitions for hover effects */
+}
+
+.event-card:hover {
+    transform: translateY(-5px); /* Slight lift effect on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* More pronounced shadow on hover */
+}
+
+.event-card img {
+    transition: transform 0.3s ease-in-out;
+}
+
+.event-card img:hover {
+    transform: scale(1.03);
+}
+
+/* Search Bar Spacing */
+.search-bar form .form-control {
+    padding-right: 15px; /* Add padding to the right of the input */
+}
+
+.search-bar form .btn {
+    margin-left: 10px; /* Add margin to the left of the search button */
+}
+
+/* Upcoming Events Header Spacing */
+h4.mb-3 { /* Targeting the specific h4 for Upcoming Events */
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+/* Organizer Dashboard Button Colors */
+.btn.btn-view {
+    background-color: #a7c7e7 !important;
+    border-color: #a7c7e7 !important;
+    color: black;
+}
+
+.btn.btn-regs {
+    background-color: #d3d3d3 !important;
+    border-color: #d3d3d3 !important;
+    color: black;
+}
+
+.btn.btn-edit {
+    background-color: #b2d8b2 !important;
+    border-color: #b2d8b2 !important;
+    color: black;
+}
+
+.btn.btn-delete {
+    background-color: #ffb3b3 !important;
+    border-color: #ffb3b3 !important;
+    color: black;
+}
+
+/* Messaging Page Styles */
+.chat-container {
+    display: flex;
+    height: 70vh;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.conversation-list {
+    flex: 0 0 300px;
+    border-right: 1px solid #ddd;
+    overflow-y: auto;
+}
+
+.conversation-item {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    cursor: pointer;
+    border: 1px solid #e0e0e0; /* Softer border */
+    border-radius: 8px; /* Slightly rounded corners */
+    margin-bottom: 10px; /* Space between items */
+    background-color: #ffffff; /* White background */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+    transition: all 0.2s ease-in-out;
+}
+
+.conversation-item:hover {
+    background-color: #f8f8f8; /* Lighter hover background */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* More pronounced shadow on hover */
+    transform: translateY(-2px); /* Slight lift effect */
+}
+
+.conversation-item.active {
+    background-color: #e6f7ff; /* A light blue for active state */
+    border-color: #91d5ff; /* Matching border color */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Active shadow */
+}
+
+.conversation-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.conversation-details {
+    flex-grow: 1;
+}
+
+.conversation-name {
+    font-weight: bold;
+}
+
+.conversation-last-message {
+    color: #666;
+    font-size: 0.9em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.chat-window {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-header {
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+    background-color: #f5f5f5;
+    display: flex;
+    align-items: center;
+}
+
+.chat-header .conversation-avatar {
+    margin-right: 15px;
+}
+
+.chat-header .conversation-name {
+    font-weight: bold;
+}
+
+.chat-messages {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto;
+    background-color: #fafafa;
+}
+
+.message {
+    display: flex;
+    margin-bottom: 15px;
+}
+
+.message.sender {
+    justify-content: flex-end;
+}
+
+.message-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin: 0 10px;
+}
+
+.message-content {
+    max-width: 60%;
+    padding: 10px 15px;
+    border-radius: 15px;
+}
+
+.message.sender .message-content {
+    background-color: #e1ffc7;
+    order: 1;
+}
+
+.message.receiver .message-content {
+    background-color: #fff;
+    border: 1px solid #eee;
+}
+
+.message-timestamp {
+    font-size: 0.8em;
+    color: #999;
+    margin-top: 5px;
+}
+
+.chat-input {
+    padding: 15px;
+    border-top: 1px solid #ddd;
+    background-color: #f5f5f5;
+}
+
+.poster-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 8px;
+    background-color: #f8f9fa; /* Match carousel-caption-below background */
+}
+
+.carousel-caption-below {
+    position: relative;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    background: none !important; /* New from user */
+    color: #333; /* Dark text */
+    text-align: center;
+    padding-top: 0.5rem !important; /* New from user */
+    padding-bottom: 15px;
+    margin-top: 0; /* Remove space from the image */
+    border-top: none !important; /* New from user */
+    box-shadow: none !important; /* New from user */
+}
+
+.carousel-caption-below::before {
+    content: none !important; /* New from user */
+}
+
+.carousel-caption-below h3 {
+    color: #333;
+}
+
+.carousel-caption-below p {
+    color: #666;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    opacity: 0.7; /* Ensure they are always visible */
+    width: 5%; /* Make them a bit wider for easier clicking */
+    transition: opacity 0.3s ease; /* Smooth transition for opacity */
+}
+
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+    opacity: 1; /* Full opacity on hover */
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: rgba(0, 0, 0, 0.3); /* Subtle dark background */
+    border-radius: 50%; /* Make them circular */
+    padding: 15px; /* Add some padding */
+    color: white; /* Ensure the icon is white */
+}
+
+/* Categories Section Styling */
+.list-group {
+    border: none; /* Remove default list-group border */
+}
+
+.list-group-item {
+    border: none; /* Remove default list-group-item border */
+    margin-bottom: 5px; /* Add space between items */
+    border-radius: 5px; /* Slightly rounded corners */
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.list-group-item:hover {
+    background-color: #f0f0f0; /* Light background on hover */
+    transform: translateX(5px); /* Slight slide effect on hover */
+}
+
+.list-group-item.active {
+    background-color: #ff5e62 !important; /* Use custom button color for active */
+    color: white !important;
+}
+
+.list-group-item.active:hover {
+    background-color: #ff9966 !important; /* Darker custom button color on hover for active */
+}
+
+.list-group-item a {
+    text-decoration: none; /* Remove underline from links */
+    color: inherit; /* Inherit color from parent */
+    display: block; /* Make the whole item clickable */
+    padding: 10px 15px; /* Adjust padding */
+}
+
+.list-group-item h4 {
+    font-size: 1.2rem; /* Adjust heading size */
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+/* Sidebar Styling */
+.sidebar {
+    width: 250px; /* Fixed width for the sidebar */
+    flex-shrink: 0; /* Prevent sidebar from shrinking */
+    /* Add transition for smooth collapse/expand */
+    transition: width 0.3s ease, margin-right 0.3s ease;
+}
+
+/* Adjust main content margin when sidebar is visible on medium and larger screens */
+@media (min-width: 768px) {
+    .ms-md-4 {
+        margin-left: 1.5rem !important; /* Default Bootstrap margin */
+    }
+
+    /* When sidebar is collapsed, main content takes full width */
+    .collapse:not(.show) + .flex-grow-1 {
+        margin-left: 0 !important;
+    }
+}
+
+.carousel-caption-below .btn-custom {
+    padding: 8px 16px; /* Slightly increased padding */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* More pronounced shadow */
+    border-radius: 5px !important; /* Add some border-radius back */
+}
