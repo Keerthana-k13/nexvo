@@ -1,0 +1,309 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block content %}
+<style>
+  /* 🌌 Global Background & Typography */
+  body, .container, .card, .form-control {
+    background-color: #000 !important;
+    color: #ffffff !important;
+    font-family: 'Segoe UI', sans-serif;
+    font-weight: bold;
+  }
+
+  /* 🧾 Card Styling */
+  .card {
+    background-color: #1a1a1a;
+    border: 1px solid #7e57c2;
+    border-radius: 12px;
+    box-shadow: 0 0 12px rgba(179, 136, 235, 0.3);
+  }
+
+  .card-header {
+    background-color: #2a2a2a !important;
+    border-bottom: 1px solid #7e57c2;
+    color: #ffffff;
+  }
+
+  .card-header h2 {
+    color: #b388eb;
+    text-shadow: 0 0 6px #b388eb;
+    font-weight: bold;
+  }
+
+  .card-body {
+    color: #ffffff;
+  }
+
+  /* 📝 Form Fields */
+  .form-control {
+    background-color: #121212;
+    color: #ffffff;
+    border: 1px solid #7e57c2;
+    font-weight: bold;
+    box-shadow: none;
+  }
+
+  .form-control:focus {
+    border-color: #b388eb;
+    box-shadow: 0 0 6px rgba(179, 136, 235, 0.5);
+  }
+
+  .form-text {
+    color: #d1c4e9;
+    font-weight: bold;
+  }
+
+  /* ❌ Error Styling */
+  .is-invalid {
+    border-color: #ff4c4c !important;
+    background-color: #2a0000 !important;
+  }
+
+  .invalid-feedback {
+    color: #ff8080;
+    font-weight: bold;
+  }
+
+  .alert-danger {
+    background-color: #2a0000;
+    color: #ff8080;
+    border: 1px solid #ff4c4c;
+    font-weight: bold;
+  }
+
+  /* 🧾 File Input */
+  .custom-file-input {
+    background-color: #121212;
+    color: #ffffff;
+    border: 1px solid #7e57c2;
+    font-weight: bold;
+  }
+
+  .custom-file-label {
+    background-color: #1a1a1a;
+    color: #b388eb;
+    border: 1px solid #7e57c2;
+    font-weight: bold;
+  }
+
+  /* ⏱️ Duration Inputs */
+  #hours, #minutes {
+    background-color: #121212;
+    color: #ffffff;
+    border: 1px solid #7e57c2;
+    font-weight: bold;
+  }
+
+  /* ✅ Additional Fields Section */
+  h4, h5 {
+    color: #b388eb;
+    text-shadow: 0 0 6px #b388eb;
+    font-weight: bold;
+  }
+
+  .text-muted {
+    color: #d1c4e9 !important;
+    font-weight: bold;
+  }
+
+  label {
+    font-weight: bold;
+    color: #ffffff;
+  }
+
+  /* ➕ Custom Field Builder */
+  .custom-field input[type="text"],
+  .custom-field select {
+    background-color: #121212;
+    color: #ffffff;
+    border: 1px solid #7e57c2;
+    font-weight: bold;
+    margin-right: 8px;
+  }
+
+  .custom-field label {
+    margin-left: 8px;
+  }
+
+  .btn-danger {
+    background-color: #ff4c4c;
+    color: #ffffff;
+    font-weight: bold;
+    border: none;
+  }
+
+  .btn-danger:hover {
+    background-color: #ff6666;
+    box-shadow: 0 0 8px rgba(255, 128, 128, 0.4);
+  }
+
+  /* 🧾 Buttons */
+  .btn-custom {
+    background-color: #4b2b6f;
+    color: #ffffff;
+    font-weight: bold;
+    border: none;
+    box-shadow: 0 0 8px rgba(179, 136, 235, 0.3);
+    transition: all 0.2s ease-in-out;
+  }
+
+  .btn-custom:hover {
+    background-color: #7e57c2;
+    box-shadow: 0 0 12px rgba(179, 136, 235, 0.5);
+    transform: translateY(-1px);
+  }
+
+  .btn-outline-secondary {
+    border: 1px solid #7e57c2;
+    color: #b388eb;
+    font-weight: bold;
+    background-color: transparent;
+  }
+
+  .btn-outline-secondary:hover {
+    background-color: #2a2a2a;
+    color: #ffffff;
+    box-shadow: 0 0 8px rgba(179, 136, 235, 0.3);
+  }
+</style>
+
+{% include 'includes/_back_button.html' %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-header bg-light">
+                    {% if action == 'create' %}
+                        <h2>Create New Event</h2>
+                    {% else %}
+                        <h2>Update Event: {{ event.title }}</h2>
+                    {% endif %}
+                </div>
+                <div class="card-body">
+                    <form method="post" id="event-form" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        
+                        {% if form.errors %}
+                            <div class="alert alert-danger">
+                                <strong>Please correct the errors below.</strong>
+                            </div>
+                        {% endif %}
+                        
+                        {# Default Event Fields #}
+                        {% for field in form %}
+                            {% if field.name == "image" %}
+                                <div class="mb-3">
+                                    {{ field.label_tag }}
+                                    <div class="custom-file">
+                                        {{ field|add_class:"custom-file-input" }}
+                                        <label class="custom-file-label" for="{{ field.id_for_label }}">Choose the poster: upload folder</label>
+                                    </div>
+                                    {% if field.help_text %}
+                                        <div class="form-text">{{ field.help_text }}</div>
+                                    {% endif %}
+                                    {% for error in field.errors %}
+                                        <div class="invalid-feedback d-block">{{ error }}</div>
+                                    {% endfor %}
+                                </div>
+                            {% elif field.name != "duration" %}
+                                <div class="mb-3">
+                                    {{ field.label_tag }}
+                                    {% if field.errors %}
+                                        {{ field|add_class:"form-control is-invalid" }}
+                                    {% else %}
+                                        {{ field|add_class:"form-control" }}
+                                    {% endif %}
+                                    {% if field.help_text %}
+                                        <div class="form-text">{{ field.help_text }}</div>
+                                    {% endif %}
+                                    {% for error in field.errors %}
+                                        <div class="invalid-feedback d-block">{{ error }}</div>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+
+                        <!-- Custom Duration Input -->
+                        <div class="mb-3">
+                            <label class="form-label">Duration</label>
+                            <div class="row g-2">
+                                <div class="col">
+                                    <input type="number" id="hours" class="form-control" placeholder="Hours" min="0">
+                                </div>
+                                <div class="col">
+                                    <input type="number" id="minutes" class="form-control" placeholder="Minutes" min="0" max="59">
+                                </div>
+                            </div>
+                        </div>
+                        <input type="hidden" name="duration" id="duration">
+
+                        <!-- ✅ Additional Participant Details -->
+                        <hr>
+                        <h4>Additional Participant Details</h4>
+                        <p class="text-muted">Select the fields you want participants to fill:</p>
+                        <div class="mb-3">
+                            <label><input type="checkbox" name="Phone Number"> Phone Number</label><br>
+                            <label><input type="checkbox" name="College Name"> College Name</label><br>
+                            <label><input type="checkbox" name="Department"> Department</label><br>
+                            <label><input type="checkbox" name="Year of Study"> Year of Study</label><br>
+                            <label><input type="checkbox" name="ID Card"> ID Card (Upload)</label><br>
+                        </div>
+
+                        <h5>Add Custom Fields</h5>
+                        <div id="custom-fields"></div>
+                        <button type="button" class="btn btn-outline-secondary btn-sm" onclick="addField()">+ Add Custom Field</button>
+
+                        <br><br>
+                        <button type="submit" class="btn btn-custom w-100 mt-3">
+                            {% if action == 'create' %}Create Event{% else %}Update Event{% endif %}
+                        </button>
+                        <a href="{% url 'organizer_dashboard' %}" class="btn btn-custom w-100 mt-2">Cancel</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        {% if event.duration %}
+        const eventDuration = {{ event.duration }};
+        const hours = Math.floor(eventDuration / 60);
+        const minutes = eventDuration % 60;
+        document.getElementById('hours').value = hours;
+        document.getElementById('minutes').value = minutes;
+        {% endif %}
+    });
+
+    document.getElementById('event-form').addEventListener('submit', function(e) {
+        const hours = parseInt(document.getElementById('hours').value) || 0;
+        const minutes = parseInt(document.getElementById('minutes').value) || 0;
+        document.getElementById('duration').value = (hours * 60) + minutes;
+    });
+
+    function addField() {
+        let container = document.getElementById("custom-fields");
+        let fieldHTML = `
+            <div class="custom-field mb-2">
+                <input type="text" name="custom_label[]" placeholder="Field Label" required>
+                <select name="custom_type[]">
+                    <option value="text">Text</option>
+                    <option value="number">Number</option>
+                    <option value="email">Email</option>
+                    <option value="url">Url</option>
+                    <option value="file">File Upload</option>
+                </select>
+                <label>
+                    <input type="checkbox" name="custom_required[]" value="on"> Required
+                </label>
+                <button type="button" class="btn btn-sm btn-danger" onclick="this.parentNode.remove()">Remove</button>
+            </div>
+        `;
+        container.insertAdjacentHTML("beforeend", fieldHTML);
+    }
+</script>
+{% endblock %}
+{% endblock %}

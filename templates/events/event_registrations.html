@@ -1,0 +1,278 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+  /* 🌌 Global Background & Typography */
+  body, .container, .card, .form-control {
+    background-color: #000 !important;
+    color: #ffffff !important;
+    font-family: 'Segoe UI', sans-serif;
+    font-weight: bold;
+  }
+
+  /* 🧾 Card Styling */
+  .card {
+    background-color: #1a1a1a;
+    border: 1px solid #7e57c2;
+    border-radius: 12px;
+    box-shadow: 0 0 12px rgba(179, 136, 235, 0.3);
+  }
+
+  .card-header {
+    background-color: #2a2a2a !important;
+    border-bottom: 1px solid #7e57c2;
+    color: #ffffff;
+  }
+
+  .card-header h5 {
+    color: #b388eb;
+    text-shadow: 0 0 6px #b388eb;
+    font-weight: bold;
+  }
+
+  .card-body {
+    color: #ffffff;
+  }
+
+  /* 📋 Table Styling */
+  .table {
+    background-color: #0b0b0b;
+    color: #ffffff;
+    font-weight: bold;
+    border-collapse: separate;
+    border-spacing: 0;
+    box-shadow: 0 0 10px rgba(179, 136, 235, 0.2);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .table th {
+    background-color: #1a1a1a;
+    color: #b388eb;
+    text-shadow: 0 0 6px #b388eb;
+    padding: 12px;
+    border-bottom: 1px solid #7e57c2;
+  }
+
+  .table td {
+    background-color: #121212;
+    color: #ffffff;
+    padding: 12px;
+    border-bottom: 1px solid #2a2a2a;
+    vertical-align: middle;
+  }
+
+  .table-hover tbody tr:hover {
+    background-color: #1f1f1f;
+    box-shadow: inset 0 0 10px rgba(179, 136, 235, 0.3);
+  }
+
+  /* ✅ Attendance Badges */
+  .badge.bg-success {
+    background-color: #4caf50 !important;
+    color: #fff !important;
+    font-weight: bold;
+  }
+
+  .badge.bg-warning {
+    background-color: #ff9800 !important;
+    color: #000 !important;
+    font-weight: bold;
+  }
+
+  /* 👤 Profile Icons */
+  .fa-user-circle {
+    color: #b388eb !important;
+  }
+
+  /* 🧾 Buttons */
+  .btn-custom {
+    background-color: #4b2b6f;
+    color: #ffffff;
+    font-weight: bold;
+    border: none;
+    box-shadow: 0 0 8px rgba(179, 136, 235, 0.3);
+    transition: all 0.2s ease-in-out;
+  }
+
+  .btn-custom:hover {
+    background-color: #7e57c2;
+    box-shadow: 0 0 12px rgba(179, 136, 235, 0.5);
+    transform: translateY(-1px);
+  }
+
+  /* 📤 Export Section */
+  .bg-light {
+    background-color: #1a1a1a !important;
+    color: #ffffff !important;
+  }
+
+  .border {
+    border: 1px solid #7e57c2 !important;
+  }
+
+  .shadow-sm {
+    box-shadow: 0 0 10px rgba(179, 136, 235, 0.2) !important;
+  }
+
+  /* 🧭 Links */
+  a {
+    color: #b388eb;
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  a:hover {
+    color: #ffffff;
+    text-shadow: 0 0 6px #b388eb;
+  }
+
+  /* 🧾 Empty State */
+  .text-muted {
+    color: #d1c4e9 !important;
+    font-weight: bold;
+  }
+
+  /* 🧠 Responsive Table */
+  .table-responsive {
+    border-radius: 8px;
+    overflow-x: auto;
+  }
+</style>
+
+<div class="row">
+    <div class="col-12">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h2>{{ event.title }} - Registrations</h2>
+                <p class="text-muted">Total Registrations: {{ registrations|length }}/{{ event.max_participants }}</p>
+            </div>
+            <a href="{% url 'organizer_dashboard' %}" class="btn btn-custom shadow-sm">
+                <i class="fas fa-arrow-left me-2"></i>Back to Dashboard
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card shadow-sm">
+            <div class="card-header bg-light">
+                <h5>Registered Participants</h5>
+            </div>
+            <div class="card-body">
+                {% if registrations %}
+                <div class="table-responsive">
+                    <table class="table table-hover table-striped border">
+                        <thead>
+                            <tr>
+                                <th>Participant</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Registration Date</th>
+                                <th>Attendance</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for registration in registrations %}
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        {% if registration.user.profile_picture %}
+                                            <img src="{{ registration.user.profile_picture.url }}" class="rounded-circle me-2" width="40" height="40" alt="Profile Picture">
+                                        {% else %}
+                                            <i class="fas fa-user-circle fa-2x text-muted me-2"></i>
+                                        {% endif %}
+                                        <div>
+                                            <strong>
+                                                <a href="{% url 'participant_detail' registration.id %}">
+                                                    {{ registration.user.get_full_name|default:registration.user.username }}
+                                                </a>
+
+                                            </strong>
+                                            {% if registration.user.bio %}
+                                                <br><small class="text-muted">{{ registration.user.bio|truncatewords:10 }}</small>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>{{ registration.user.email }}</td>
+                                <td>{{ registration.user.phone|default:"-" }}</td>
+                                <td>{{ registration.registered_at|date:"M d, Y g:i A" }}</td>
+                                <td>
+                                    {% if registration.attended %}
+                                        <span class="badge bg-success">Attended</span>
+                                    {% else %}
+                                        <span class="badge bg-warning text-dark">Registered</span>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <div class="btn-group btn-group-sm" role="group">
+                                        <a href="{% url 'conversation' registration.user.id %}" class="btn btn-custom" title="Send Message">
+                                            <i class="fas fa-envelope"></i>
+                                        </a>
+                                        {% if not registration.attended %}
+                                        <button class="btn btn-custom" onclick="markAttended({{ registration.id }})" title="Mark Attended">
+                                            <i class="fas fa-check"></i>
+                                        </button>
+                                        {% endif %}
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- Export Options -->
+                <div class="mt-4 p-3 border rounded bg-light shadow-sm">
+                    <h5 class="mb-3">Export Options</h5>
+                    <button onclick="exportToCSV()" class="btn btn-custom me-2">
+                        <i class="fas fa-download me-2"></i>Export to CSV
+                    </button>
+                    <button onclick="window.print()" class="btn btn-custom">
+                        <i class="fas fa-print me-2"></i>Print List
+                    </button>
+                </div>
+                {% else %}
+                <div class="text-center p-5 border rounded shadow-sm">
+                    <h5 class="text-muted">No registrations yet</h5>
+                    <p class="text-muted">Participants will appear here once they register for your event.</p>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% block extra_js %}
+<script>
+function exportToCSV() {
+    let csvContent = "data:text/csv;charset=utf-8,";
+    csvContent += "Name,Email,Phone,Registration Date,Attendance Status\n";
+    
+    {% for registration in registrations %}
+    csvContent += "{{ registration.user.get_full_name|default:registration.user.username|escapejs }},";
+    csvContent += "{{ registration.user.email|escapejs }},";
+    csvContent += "{{ registration.user.phone|default:''|escapejs }},";
+    csvContent += "{{ registration.registered_at|date:'M d, Y g:i A'|escapejs }},";
+    csvContent += "{% if registration.attended %}Attended{% else %}Registered{% endif %}\n";
+    {% endfor %}
+    
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", "{{ event.title|slugify }}_registrations.csv");
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+
+function markAttended(registrationId) {
+    // TODO: Implement AJAX call to a Django view to mark attendance
+    alert('This feature would mark the participant as attended. Implement the backend endpoint for this functionality.');
+}
+</script>
+{% endblock %}
+{% endblock %}

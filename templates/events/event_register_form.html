@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+
+{% load widget_tweaks %}
+
+{% block content %}
+<style>
+  /* 🌌 Global Background & Typography */
+  body, .container, .card, .form-control {
+    background-color: #000 !important;
+    color: #ffffff !important;
+    font-family: 'Segoe UI', sans-serif;
+    font-weight: bold;
+  }
+
+  /* 🧾 Card Styling */
+  .card {
+    background-color: #1a1a1a;
+    border: 1px solid #7e57c2;
+    border-radius: 12px;
+    box-shadow: 0 0 12px rgba(179, 136, 235, 0.3);
+  }
+
+  .card-header {
+    background-color: #2a2a2a !important;
+    border-bottom: 1px solid #7e57c2;
+    color: #ffffff;
+  }
+
+  .card-header h2 {
+    color: #b388eb;
+    text-shadow: 0 0 6px #b388eb;
+    font-weight: bold;
+  }
+
+  .card-body {
+    color: #ffffff;
+  }
+
+  /* 📝 Form Fields */
+  .form-control {
+    background-color: #121212;
+    color: #ffffff;
+    border: 1px solid #7e57c2;
+    font-weight: bold;
+    box-shadow: none;
+  }
+
+  .form-control:focus {
+    border-color: #b388eb;
+    box-shadow: 0 0 6px rgba(179, 136, 235, 0.5);
+  }
+
+  .form-text {
+    color: #d1c4e9;
+    font-weight: bold;
+  }
+
+  /* ❌ Error Styling */
+  .is-invalid {
+    border-color: #ff4c4c !important;
+    background-color: #2a0000 !important;
+  }
+
+  .invalid-feedback {
+    color: #ff8080;
+    font-weight: bold;
+  }
+
+  .alert-danger {
+    background-color: #2a0000;
+    color: #ff8080;
+    border: 1px solid #ff4c4c;
+    font-weight: bold;
+  }
+
+  /* 🧾 Submit Button */
+  .btn-custom {
+    background-color: #4b2b6f;
+    color: #ffffff;
+    font-weight: bold;
+    border: none;
+    box-shadow: 0 0 8px rgba(179, 136, 235, 0.3);
+    transition: all 0.2s ease-in-out;
+  }
+
+  .btn-custom:hover {
+    background-color: #7e57c2;
+    box-shadow: 0 0 12px rgba(179, 136, 235, 0.5);
+    transform: translateY(-1px);
+  }
+</style>
+
+
+{% include 'includes/_back_button.html' %}
+
+<div class="container mt-5">
+    <div class="card shadow-sm">
+        <div class="card-header bg-light">
+            <h2 class="mb-0">Register for {{ event.title }}</h2>
+        </div>
+        <div class="card-body">
+            <form method="post" enctype="multipart/form-data" novalidate>
+                {% csrf_token %}
+
+                {% if form.errors %}
+                    <div class="alert alert-danger">
+                        Please correct the errors below.
+                    </div>
+                {% endif %}
+
+                {% for field in form %}
+                    <div class="mb-3">
+                        {{ field.label_tag }}
+                        {% if field.errors %}
+                            {{ field|add_class:"form-control is-invalid" }}
+                            <div class="invalid-feedback d-block">
+                                {% for error in field.errors %}
+                                    {{ error }}
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ field|add_class:"form-control" }}
+                        {% endif %}
+                        {% if field.help_text %}
+                            <div class="form-text">{{ field.help_text }}</div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+
+                <button type="submit" class="btn btn-custom w-100">Register</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

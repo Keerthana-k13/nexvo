@@ -1,0 +1,288 @@
+{% extends 'base.html' %}
+
+{% block category_nav_item %}
+<li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Categories
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <li><a class="dropdown-item" href="{% url 'home' %}?category_name=Technical">Technical</a></li>
+        <li><a class="dropdown-item" href="{% url 'home' %}?category_name=Non-Technical">Non-Technical</a></li>
+        <li><hr class="dropdown-divider"></li>
+        <li><a class="dropdown-item" href="{% url 'home' %}">All Events</a></li>
+    </ul>
+</li>
+{% endblock %}
+
+{% block content %}
+<style>
+  /* 🌌 Global Background & Typography */
+  body, .container, .card, .form-control {
+    background-color: #000 !important;
+    color: #ffffff !important;
+    font-family: 'Segoe UI', sans-serif;
+    font-weight: bold;
+  }
+
+  /* 🧭 Navbar Dropdown */
+  .nav-link, .dropdown-item {
+    color: #b388eb !important;
+    font-weight: bold;
+    text-shadow: 0 0 6px #b388eb;
+  }
+
+  .dropdown-item:hover {
+    background-color: #2a2a2a;
+    color: #ffffff !important;
+  }
+
+  /* 📁 Sidebar Card */
+  .sidebar .card {
+    background-color: #1a1a1a;
+    border: 1px solid #7e57c2;
+    box-shadow: 0 0 10px rgba(179, 136, 235, 0.3);
+    border-radius: 10px;
+  }
+
+  .sidebar h4 {
+    color: #b388eb;
+    text-shadow: 0 0 6px #b388eb;
+  }
+
+  .list-group-item {
+    background-color: #121212;
+    color: #ffffff;
+    font-weight: bold;
+    border: none;
+  }
+
+  .list-group-item:hover {
+    background-color: #2a2a2a;
+    color: #b388eb;
+  }
+
+  /* 🎠 Carousel */
+  .carousel-inner {
+    background-color: #0b0b0b;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(179, 136, 235, 0.2);
+  }
+
+  .carousel-caption-below {
+    background-color: #1a1a1a;
+    color: #ffffff;
+    font-weight: bold;
+    box-shadow: 0 0 8px rgba(179, 136, 235, 0.2);
+  }
+
+  .carousel-caption-below h3 {
+    color: #b388eb;
+    text-shadow: 0 0 6px #b388eb;
+  }
+
+  /* 🔍 Search Bar */
+  .search-bar .form-control {
+    background-color: #121212;
+    color: #ffffff;
+    border: 2px solid #7e57c2;
+    font-weight: bold;
+  }
+
+  .search-bar .btn-custom {
+    background-color: #4b2b6f;
+    color: #ffffff;
+    font-weight: bold;
+    box-shadow: 0 0 8px rgba(179, 136, 235, 0.3);
+  }
+
+  .search-bar .btn-custom:hover {
+    background-color: #7e57c2;
+    box-shadow: 0 0 12px rgba(179, 136, 235, 0.5);
+  }
+
+  /* 🗓️ Event Cards */
+  .event-card {
+    background-color: #1a1a1a;
+    border: 1px solid #7e57c2;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(179, 136, 235, 0.3);
+    color: #ffffff;
+  }
+
+  .event-card .card-title {
+    color: #b388eb;
+    font-weight: bold;
+    text-shadow: 0 0 4px #b388eb;
+  }
+
+  .event-card .card-text {
+    color: #d1c4e9;
+    font-weight: bold;
+  }
+
+  .event-card .btn-custom {
+    background-color: #4b2b6f;
+    color: #ffffff;
+    font-weight: bold;
+    box-shadow: 0 0 8px rgba(179, 136, 235, 0.3);
+  }
+
+  .event-card .btn-custom:hover {
+    background-color: #7e57c2;
+    box-shadow: 0 0 12px rgba(179, 136, 235, 0.5);
+  }
+
+  /* 📍 View All Button */
+  .btn-lg.btn-custom {
+    background-color: #4b2b6f;
+    color: #ffffff;
+    font-weight: bold;
+    box-shadow: 0 0 10px rgba(179, 136, 235, 0.4);
+  }
+
+  .btn-lg.btn-custom:hover {
+    background-color: #7e57c2;
+    box-shadow: 0 0 14px rgba(179, 136, 235, 0.6);
+  }
+  /* 🧾 Global Text Fixes */
+h1, h2, h3, h4, h5, h6, p, span, small, strong, div {
+  color: #ffffff !important;
+  font-weight: bold;
+}
+
+/* 🧠 Bootstrap Utility Overrides */
+.text-muted {
+  color: #d1c4e9 !important;
+  font-weight: bold;
+}
+
+.text-dark {
+  color: #ffffff !important;
+  font-weight: bold;
+}
+
+.text-center {
+  color: #ffffff !important;
+  font-weight: bold;
+}
+
+/* 🧾 Event Info & Details */
+.carousel-caption-below p,
+.event-card .card-body p,
+.sidebar .card-body p {
+  color: #ffffff !important;
+  font-weight: bold;
+}
+
+</style>
+
+
+<!-- Toggle button for Categories sidebar (visible on small screens) -->
+<button class="btn btn-primary d-md-none mb-3" type="button" data-bs-toggle="collapse" data-bs-target="#categoriesSidebar" aria-expanded="false" aria-controls="categoriesSidebar">
+    Toggle Categories
+</button>
+
+<div class="d-flex">
+    <!-- Categories Sidebar (Collapsible) -->
+    <div class="collapse d-md-block sidebar" id="categoriesSidebar" style="margin-left: 0;">
+        <div class="card card-body mb-4">
+            <h4 class="mb-3">Categories</h4>
+            <div class="list-group shadow-sm rounded">
+                {% for category in categories %}
+                <a href="{% url 'events_by_category' category.id %}" class="list-group-item list-group-item-action">
+                    {{ category.name }}
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="flex-grow-1 ms-md-4">
+        <!-- Event Carousel -->
+        {% if events %}
+        <div id="eventCarousel" class="carousel slide mb-4" data-bs-ride="carousel" data-bs-interval="5000">
+            <div class="carousel-indicators">
+                {% for event in events %}
+                <button type="button" data-bs-target="#eventCarousel" data-bs-slide-to="{{ forloop.counter0 }}" {% if forloop.first %}class="active" aria-current="true"{% endif %} aria-label="Slide {{ forloop.counter }}"></button>
+                {% endfor %}
+            </div>
+            <div class="carousel-inner">
+                {% for event in events %}
+                <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                    {% if event.image %}
+                    <div class="poster-container" style="max-width: 250px; margin: 0 auto;">
+                        <a href="{% url 'event_detail' event.pk %}" class="d-block text-decoration-none text-dark" style="width: 100%; height: 100%;">
+                            <img src="{{ event.image.url }}" alt="{{ event.title }}" style="width: 100%; height: 100%; object-fit: contain;">
+                        </a>
+                    </div>
+                    {% else %}
+                    <a href="{% url 'event_detail' event.pk %}" class="d-block text-decoration-none text-dark">
+                        <div class="alert alert-info text-center d-flex align-items-center justify-content-center" role="alert" style="height: 350px;">
+                            No image available for this event.
+                        </div>
+                    </a>
+                    {% endif %}
+                    <div class="carousel-caption-below p-3 rounded" style="border-top: none;">
+                        <h3>{{ event.title }}</h3>
+                        <p>{{ event.date|date:"M d, Y" }} - {{ event.location }}</p>
+                        <a href="{% url 'event_detail' event.pk %}" class="btn btn-sm btn-custom">View Details</a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#eventCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#eventCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+        {% endif %}
+
+        <!-- Search Bar -->
+        <div class="mb-4 search-bar">
+            <form method="get" action="{% url 'home' %}" class="d-flex">
+                <input type="text" 
+                       class="form-control" 
+                       placeholder="Search events..." 
+                       name="q" 
+                       value="{{ request.GET.q }}" 
+                       style="border: 2px solid #444;">
+                <button type="submit" class="btn btn-custom"><i class="fas fa-search"></i></button>
+            </form>
+        </div>
+
+        <!-- Events Grid -->
+        <h4 class="mb-3">Upcoming Events</h4>
+        <div class="row g-4">
+            {% for event in events %}
+            <div class="col-md-4">
+                <div class="card event-card h-100 shadow-sm">
+                    {% if event.image %}
+                    <a href="{% url 'event_detail' event.pk %}">
+                        <img src="{{ event.image.url }}" class="card-img-top" alt="{{ event.title }}" style="height: 180px; object-fit: cover;">
+                    </a>
+                    {% endif %}
+                    <div class="card-body">
+                        <h6 class="card-title">{{ event.title }}</h6>
+                        <p class="card-text small text-muted">
+                            <i class="fas fa-calendar me-2"></i>{{ event.date|date:"M d, Y" }}<br>
+                            <i class="fas fa-map-marker-alt me-2"></i>{{ event.location }}
+                        </p>
+                        <a href="{% url 'event_detail' event.pk %}" class="btn btn-sm btn-custom w-100">View Details</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- View All -->
+        <div class="text-center mt-4">
+            <a href="{% url 'event_list' %}" class="btn btn-lg btn-custom px-5">View All Events</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

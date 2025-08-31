@@ -1,0 +1,645 @@
+/* Header Styling */
+.navbar-brand {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #b388eb;
+    text-shadow: 0 0 8px #b388eb;
+}
+
+.nav-link {
+    font-size: 1.1rem;
+    color: #d1c4e9 !important;
+}
+
+.nav-link:hover {
+    color: #fff !important;
+    text-shadow: 0 0 6px #b388eb;
+}
+
+/* Buttons */
+.btn-custom {
+    background: linear-gradient(135deg, #7e57c2, #b388eb);
+    border: none !important;
+    color: #fff;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    outline: none !important;
+    box-shadow: 0 0 10px rgba(179, 136, 235, 0.4);
+    border-radius: 6px !important;
+    text-decoration: none !important;
+    transform: translateZ(0);
+    margin: 0;
+}
+
+.btn-custom:hover {
+    background: linear-gradient(135deg, #b388eb, #7e57c2);
+    transform: scale(1.05);
+    box-shadow: 0 0 16px rgba(179, 136, 235, 0.6);
+}
+
+.btn-custom:focus {
+    outline: 0 !important;
+    box-shadow: none !important;
+}
+
+/* Custom File Input */
+.custom-file-label {
+    background-color: #2a2a2a;
+    color: #e0d7ff;
+    border: 1px solid #b388eb;
+}
+
+.custom-file-label::after {
+    background-color: #7e57c2;
+    color: #fff;
+    content: "Browse";
+}
+
+/* Poster Hover Effect */
+.big-banner {
+    overflow: hidden;
+}
+
+.big-banner img {
+    transition: transform 0.3s ease-in-out;
+}
+
+.big-banner img:hover {
+    transform: scale(1.03);
+}
+
+.wide-poster-card-body .wide-poster-btn {
+    margin-top: -10px;
+}
+
+/* Event Cards */
+.event-card {
+    background-color: #1a1a1a;
+    border-radius: 8px;
+    box-shadow: 0 0 12px rgba(179, 136, 235, 0.2);
+    transition: all 0.3s ease;
+}
+
+.event-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px rgba(179, 136, 235, 0.4);
+}
+
+.event-card img {
+    transition: transform 0.3s ease-in-out;
+}
+
+.event-card img:hover {
+    transform: scale(1.03);
+}
+
+/* Search Bar */
+.search-bar form .form-control {
+    background-color: #2a2a2a;
+    color: #e0d7ff;
+    border: 1px solid #b388eb;
+    padding-right: 15px;
+}
+
+.search-bar form .btn {
+    margin-left: 10px;
+    background-color: #7e57c2;
+    color: #fff;
+    border: none;
+}
+
+/* Upcoming Events Header */
+h4.mb-3 {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    color: #b388eb;
+    text-shadow: 0 0 6px #b388eb;
+}
+
+/* Organizer Dashboard Buttons */
+.btn.btn-view {
+    background-color: #b388eb !important;
+    border-color: #b388eb !important;
+    color: #000;
+}
+
+.btn.btn-regs {
+    background-color: #7e57c2 !important;
+    border-color: #7e57c2 !important;
+    color: #fff;
+}
+
+.btn.btn-edit {
+    background-color: #9575cd !important;
+    border-color: #9575cd !important;
+    color: #fff;
+}
+
+.btn.btn-delete {
+    background-color: #ba68c8 !important;
+    border-color: #ba68c8 !important;
+    color: #fff;
+}
+/* Messaging Page Styles */
+.chat-container {
+    display: flex;
+    height: 70vh;
+    border: 1px solid #444;
+    border-radius: 5px;
+    overflow: hidden;
+    background-color: #1a1a1a;
+}
+
+.conversation-list {
+    flex: 0 0 300px;
+    border-right: 1px solid #444;
+    overflow-y: auto;
+    background-color: #1a1a1a;
+}
+
+.conversation-item {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    cursor: pointer;
+    border: 1px solid #2e2e2e;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    background-color: #2a2a2a;
+    box-shadow: 0 2px 5px rgba(179, 136, 235, 0.1);
+    transition: all 0.2s ease-in-out;
+    color: #e0d7ff;
+}
+
+.conversation-item:hover {
+    background-color: #3a3a3a;
+    box-shadow: 0 4px 10px rgba(179, 136, 235, 0.2);
+    transform: translateY(-2px);
+}
+
+.conversation-item.active {
+    background-color: #4a3b5f;
+    border-color: #b388eb;
+    box-shadow: 0 2px 8px rgba(179, 136, 235, 0.3);
+}
+
+.conversation-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.conversation-details {
+    flex-grow: 1;
+}
+
+.conversation-name {
+    font-weight: bold;
+    color: #b388eb;
+}
+
+.conversation-last-message {
+    color: #aaa;
+    font-size: 0.9em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.chat-window {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: #1a1a1a;
+}
+
+.chat-header {
+    padding: 15px;
+    border-bottom: 1px solid #444;
+    background-color: #2a2a2a;
+    display: flex;
+    align-items: center;
+    color: #e0d7ff;
+}
+
+.chat-header .conversation-name {
+    font-weight: bold;
+    color: #b388eb;
+}
+
+.chat-messages {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto;
+    background-color: #1a1a1a;
+}
+
+.message {
+    display: flex;
+    margin-bottom: 15px;
+}
+
+.message.sender {
+    justify-content: flex-end;
+}
+
+.message-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin: 0 10px;
+}
+
+.message-content {
+    max-width: 60%;
+    padding: 10px 15px;
+    border-radius: 15px;
+    color: #fff;
+}
+
+.message.sender .message-content {
+    background-color: #7e57c2;
+    order: 1;
+}
+
+.message.receiver .message-content {
+    background-color: #2a2a2a;
+    border: 1px solid #444;
+}
+
+.message-timestamp {
+    font-size: 0.8em;
+    color: #999;
+    margin-top: 5px;
+}
+
+.chat-input {
+    padding: 15px;
+    border-top: 1px solid #444;
+    background-color: #2a2a2a;
+}
+
+/* Poster Container */
+.poster-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 8px;
+    background-color: #1a1a1a;
+}
+
+/* Carousel Caption */
+.carousel-caption-below {
+    position: relative;
+    background: none !important;
+    color: #e0d7ff;
+    text-align: center;
+    padding-top: 0.5rem !important;
+    padding-bottom: 15px;
+    margin-top: 0;
+    border-top: none !important;
+    box-shadow: none !important;
+}
+
+.carousel-caption-below h3 {
+    color: #b388eb;
+    text-shadow: 0 0 6px #b388eb;
+}
+
+.carousel-caption-below p {
+    color: #aaa;
+}
+
+.carousel-caption-below .btn-custom {
+    padding: 8px 16px;
+    box-shadow: 0 0 10px rgba(179, 136, 235, 0.3);
+    border-radius: 6px !important;
+    background-color: #7e57c2;
+    color: #fff;
+}
+
+/* Carousel Controls */
+.carousel-control-prev,
+.carousel-control-next {
+    opacity: 0.7;
+    width: 5%;
+    transition: opacity 0.3s ease;
+}
+
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+    opacity: 1;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: rgba(179, 136, 235, 0.3);
+    border-radius: 50%;
+    padding: 15px;
+    color: white;
+}
+
+/* Categories Section */
+.list-group {
+    border: none;
+    background-color: transparent;
+}
+
+.list-group-item {
+    border: none;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    background-color: #2a2a2a;
+    color: #e0d7ff;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.list-group-item:hover {
+    background-color: #3a3a3a;
+    transform: translateX(5px);
+}
+
+.list-group-item.active {
+    background-color: #b388eb !important;
+    color: #000 !important;
+}
+
+.list-group-item.active:hover {
+    background-color: #9575cd !important;
+}
+
+.list-group-item a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    padding: 10px 15px;
+}
+
+.list-group-item h4 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #b388eb;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    flex-shrink: 0;
+    background-color: #1a1a1a;
+    transition: width 0.3s ease, margin-right 0.3s ease;
+}
+
+/* Responsive Margin Fix */
+@media (min-width: 768px) {
+    .ms-md-4 {
+        margin-left: 1.5rem !important;
+    }
+
+    .collapse:not(.show) + .flex-grow-1 {
+        margin-left: 0 !important;
+    }
+}
+
+/* Nexvo Brand */
+.nexvo-brand {
+    display: flex;
+    align-items: center;
+    color: #b388eb;
+}
+
+.nexvo-brand img {
+    margin-right: 10px;
+}
+
+.nexvo-brand span {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-shadow: 0 0 6px #b388eb;
+}
+
+
+/*just added the code according to the darth theme*/
+
+
+.container, .card, .modal-content, .form-control, .table, .dropdown-menu {
+  background-color: #1a1a1a !important;
+  color: #e0d7ff !important;
+  border-color: #b388eb !important;
+}
+
+label, h1, h2, h3, h4, h5, h6, .btn, .nav-link, .form-label {
+  color: #b388eb !important;
+  text-shadow: 0 0 6px #b388eb;
+}
+
+.btn {
+  background-color: #7e57c2 !important;
+  border: none !important;
+  color: #fff !important;
+}
+
+input, select, textarea {
+  background-color: #2a2a2a !important;
+  color: #e0d7ff !important;
+  border: 1px solid #b388eb !important;
+}
+
+table {
+  background-color: #1a1a1a !important;
+  color: #e0d7ff !important;
+}
+
+th, td {
+  border: 1px solid #b388eb !important;
+  padding: 10px;
+}
+
+th {
+  background-color: #2a2a2a !important;
+  color: #b388eb !important;
+}
+
+.dropdown-menu {
+  background-color: #2a2a2a !important;
+  color: #e0d7ff !important;
+}
+
+.modal-header, .modal-body, .modal-footer {
+  background-color: #1a1a1a !important;
+  color: #e0d7ff !important;
+}
+
+.star-rating i {
+  color: #b388eb !important;
+  text-shadow: 0 0 4px #b388eb;
+}
+
+/* Force all text to white unless otherwise styled */
+body, h1, h2, h3, h4, h5, h6, p, span, a, li, td, th, label, button {
+  color: white !important;
+}
+
+/* Optional: Make links neon purple on hover */
+a:hover {
+  color: #c770f0 !important;
+}
+
+
+
+/* 🖤 Universal Background Fix */
+body, .container, .card, .modal-content, .form-control, .dropdown-menu, .table, .list-group-item {
+  background-color: #000 !important;
+  color: #e0d7ff !important;
+  border: none !important;
+}
+
+/* 🌙 Text Color Override */
+body, h1, h2, h3, h4, h5, h6, p, span, a, li, td, th, label, button, input, select, textarea {
+  color: #e0d7ff !important;
+}
+
+/* 🔮 Headings Glow */
+h1, h2, h3, h4, h5 {
+  color: #b388eb !important;
+  text-shadow: 0 0 12px #b388eb;
+}
+
+/* 🟣 Link and Button Styling */
+a, .btn, .nav-link {
+  color: #fff !important;
+  background-color: #7e57c2 !important;
+  border: none !important;
+  border-radius: 6px;
+  padding: 10px 20px;
+  text-decoration: none;
+  box-shadow: 0 0 10px rgba(179, 136, 235, 0.4);
+  transition: all 0.3s ease;
+}
+
+a:hover, .btn:hover, .nav-link:hover {
+  box-shadow: 0 0 16px rgba(179, 136, 235, 0.6);
+  transform: translateY(-2px);
+  color: #fff !important;
+}
+
+/* 🧠 Form Elements */
+input, select, textarea {
+  background-color: #1a1a1a !important;
+  color: #e0d7ff !important;
+  border: 1px solid #b388eb !important;
+  border-radius: 6px;
+  padding: 8px;
+}
+
+/* 🏷️ Labels */
+label {
+  color: #d1c4e9 !important;
+}
+
+/* 🧩 Remove White Boxes in Lists and Tables */
+.table th, .table td, .list-group-item {
+  background-color: #000 !important;
+  color: #e0d7ff !important;
+  border-color: #2a2a2a !important;
+}
+
+/* 🔮 Custom Buttons */
+.btn-custom {
+  background-color: #7e57c2 !important;
+  color: #fff !important;
+  border: none !important;
+}
+
+.btn-custom:hover {
+  box-shadow: 0 0 16px rgba(179, 136, 235, 0.6);
+}
+
+/* 🎯 Badge Fix */
+.badge.bg-danger {
+  background-color: #b388eb !important;
+  color: #000 !important;
+}
+/* 📋 Table Styling Fix */
+table, th, td {
+  background-color: #000 !important;
+  color: #e0d7ff !important;
+  border: 1px solid #7e57c2 !important;
+}
+
+thead {
+  background-color: #1a1a1a !important;
+  color: #b388eb !important;
+  text-shadow: 0 0 8px #b388eb;
+}
+
+/* 📊 Summary Stats Styling */
+.summary-box, .stats-box, .dashboard-summary, .event-count {
+  background-color: #000 !important;
+  color: #e0d7ff !important;
+  border: 1px solid #7e57c2 !important;
+  box-shadow: 0 0 10px rgba(179, 136, 235, 0.3);
+  border-radius: 8px;
+  padding: 10px;
+}
+
+/* 🧭 Action Links */
+.table a {
+  color: #b388eb !important;
+  text-decoration: none;
+}
+
+.table a:hover {
+  color: #fff !important;
+  text-shadow: 0 0 6px #b388eb;
+}
+
+/* ➕ Create Button */
+.btn-create-event {
+  background-color: #7e57c2 !important;
+  color: #fff !important;
+  box-shadow: 0 0 10px rgba(179, 136, 235, 0.4);
+  border: none;
+  border-radius: 6px;
+}
+
+.btn-create-event:hover {
+  box-shadow: 0 0 16px rgba(179, 136, 235, 0.6);
+  transform: translateY(-2px);
+}
+
+
+
+
+/* Force table and dashboard elements to dark theme */
+table, th, td {
+  background-color: #000 !important;
+  color: #e0d7ff !important;
+  border: 1px solid #7e57c2 !important;
+}
+
+thead {
+  background-color: #1a1a1a !important;
+  color: #b388eb !important;
+  text-shadow: 0 0 8px #b388eb;
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) {
+  background-color: #111 !important;
+}
+
+.table-hover tbody tr:hover {
+  background-color: #1f1f1f !important;
+}
+
+/* Fix for summary boxes */
+.dashboard-summary, .stats-box, .summary-box {
+  background-color: #000 !important;
+  color: #e0d7ff !important;
+  border: 1px solid #7e57c2 !important;
+  box-shadow: 0 0 10px rgba(179, 136, 235, 0.3);
+  border-radius: 8px;
+  padding: 10px;
+}

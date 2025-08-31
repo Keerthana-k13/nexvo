@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+  /* 🌌 Global Background & Typography */
+  body, .container, .card {
+    background-color: #000 !important;
+    color: #ffffff !important;
+    font-family: 'Segoe UI', sans-serif;
+    font-weight: bold;
+  }
+
+  /* 🧾 Card Styling */
+  .card {
+    background-color: #1a1a1a;
+    border: 1px solid #7e57c2;
+    border-radius: 12px;
+    box-shadow: 0 0 12px rgba(179, 136, 235, 0.3);
+  }
+
+  .card-header {
+    background-color: #b00020 !important;
+    color: #ffffff !important;
+    border-bottom: 1px solid #ff4c4c;
+  }
+
+  .card-header h2 {
+    font-weight: bold;
+    text-shadow: 0 0 6px #ff8080;
+  }
+
+  .card-body p {
+    color: #ffffff;
+    font-weight: bold;
+  }
+
+  /* 🧾 Buttons */
+  .btn-custom {
+    background-color: #4b2b6f;
+    color: #ffffff;
+    font-weight: bold;
+    border: none;
+    margin-right: 10px;
+    box-shadow: 0 0 8px rgba(179, 136, 235, 0.3);
+    transition: all 0.2s ease-in-out;
+  }
+
+  .btn-custom:hover {
+    background-color: #7e57c2;
+    box-shadow: 0 0 12px rgba(179, 136, 235, 0.5);
+    transform: translateY(-1px);
+  }
+
+  /* 🔗 Links */
+  a {
+    color: #b388eb;
+    font-weight: bold;
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: #ffffff;
+    text-shadow: 0 0 6px #b388eb;
+  }
+</style>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header bg-danger text-white">
+                    <h2>Confirm Delete</h2>
+                </div>
+                <div class="card-body">
+                    <p>Are you sure you want to delete the event "<strong>{{ event.title }}</strong>"?</p>
+                    <form method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-custom">Confirm Delete</button>
+                        <a href="{% url 'organizer_dashboard' %}" class="btn btn-custom">Cancel</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
