@@ -84,7 +84,8 @@
   .search-bar .form-control {
     background-color: #121212;
     color: #ffffff;
-    border: 2px solid #7e57c2;
+    border: 2px solid #7e57c2; /* bold purple border visible always */
+    border-radius: 6px;
     font-weight: bold;
   }
 
@@ -93,11 +94,13 @@
     color: #ffffff;
     font-weight: bold;
     box-shadow: 0 0 8px rgba(179, 136, 235, 0.3);
+   
   }
 
   .search-bar .btn-custom:hover {
     background-color: #7e57c2;
     box-shadow: 0 0 12px rgba(179, 136, 235, 0.5);
+    
   }
 
   /* 🗓️ Event Cards */
@@ -218,8 +221,8 @@ h1, h2, h3, h4, h5, h6, p, span, small, strong, div {
                     </div>
                     {% else %}
                     <a href="{% url 'event_detail' event.pk %}" class="d-block text-decoration-none text-dark">
-                        <div class="alert alert-info text-center d-flex align-items-center justify-content-center" role="alert" style="height: 350px;">
-                            No image available for this event.
+                        <div class="alert alert-info text-center d-flex align-items-center justify-content-center" role="alert" style="height: 350px; color: black !important;">
+                            No image available for this even
                         </div>
                     </a>
                     {% endif %}
@@ -250,7 +253,7 @@ h1, h2, h3, h4, h5, h6, p, span, small, strong, div {
                        placeholder="Search events..." 
                        name="q" 
                        value="{{ request.GET.q }}" 
-                       style="border: 2px solid #444;">
+                       style="border: 2px solid #7e57c2 !important;">
                 <button type="submit" class="btn btn-custom"><i class="fas fa-search"></i></button>
             </form>
         </div>

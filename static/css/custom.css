@@ -96,7 +96,7 @@
 /* Search Bar */
 .search-bar form .form-control {
     background-color: #2a2a2a;
-    color: #e0d7ff;
+    color:  #e0d7ff;
     border: 1px solid #b388eb;
     padding-right: 15px;
 }
@@ -643,3 +643,6 @@ thead {
   border-radius: 8px;
   padding: 10px;
 }
+
+
+
