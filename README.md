@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ## Project Overview: Event Networking Platform
 
 This is a robust web application designed to facilitate event management and participation, connecting event organizers with attendees. It provides a comprehensive suite of features for creating, managing, and attending various events, fostering communication, and tracking engagement.
@@ -76,3 +77,6 @@ The platform supports two primary user roles:
 
 **9. Workability & Flow Summary:**
 The application provides a clear and intuitive flow for both organizers and participants. Organizers can efficiently set up and manage events, track registrations, and gather feedback. Participants can easily discover, register for, and engage with events, manage their profiles, and communicate with others. The system is designed to streamline the event networking process from creation to post-event engagement.
+=======
+"# Event-Networking" 
+>>>>>>> ce9b6cf0d7419a255b6a02052dd9479b3d9629be

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {% extends 'base.html' %}
 {% load static %}
 
@@ -242,4 +243,51 @@ body, .chat-container, .conversation-list, .chat-window {
         {% endif %}
     </div>
 </div>
+=======
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="mb-3">
+    <a href="{% url 'home' %}" class="btn btn-secondary">
+        <i class="fas fa-arrow-left me-2"></i>Back to Home
+    </a>
+</div>
+<div class="chat-container">
+    <div class="conversation-list">
+        {% for conv_user in conversations %}
+            <a href="{% url 'conversation' conv_user.id %}" class="text-decoration-none text-dark">
+                <div class="conversation-item {% if other_user.id == conv_user.id %}active{% endif %}">
+                    {% if conv_user.profile_picture %}
+                        <img src="{{ conv_user.profile_picture.url }}" alt="{{ conv_user.username }}" class="conversation-avatar">
+                    {% else %}
+                        <img src="{% static 'images/default_avatar.svg' %}" alt="{{ conv_user.username }}" class="conversation-avatar">
+                    {% endif %}
+                    <div class="conversation-details">
+                        <div class="conversation-name">{{ conv_user.get_full_name|default:conv_user.username }}</div>
+                        <div class="conversation-last-message">
+                            {{ conv_user.last_message.content|truncatewords:5|default:"No messages yet" }}
+                        </div>
+                    </div>
+                </div>
+            </a>
+        {% empty %}
+            <p class="text-center text-muted p-3">No conversations yet.</p>
+        {% endfor %}
+    </div>
+    <div class="chat-window">
+        {% if other_user %}
+            {% include 'events/conversation.html' %}
+        {% else %}
+            <div class="d-flex h-100 justify-content-center align-items-center">
+                <div class="text-center text-muted">
+                    <i class="fas fa-comments fa-4x mb-3"></i>
+                    <h4>Select a conversation</h4>
+                    <p>Choose a user from the left to start chatting.</p>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</div>
+>>>>>>> ce9b6cf0d7419a255b6a02052dd9479b3d9629be
 {% endblock %}

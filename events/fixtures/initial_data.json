@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 [
     {
         "model": "events.category",
@@ -15,4 +16,23 @@
             "description": "Soft skills, business, marketing, and other non-technical events"
         }
     }
+=======
+[
+    {
+        "model": "events.category",
+        "pk": 1,
+        "fields": {
+            "name": "Technical",
+            "description": "Technical workshops, coding bootcamps, and technology-related events"
+        }
+    },
+    {
+        "model": "events.category",
+        "pk": 2,
+        "fields": {
+            "name": "Non-Technical",
+            "description": "Soft skills, business, marketing, and other non-technical events"
+        }
+    }
+>>>>>>> ce9b6cf0d7419a255b6a02052dd9479b3d9629be
 ]

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 """
 ASGI config for event_networking project.
 
@@ -14,3 +15,21 @@ from django.core.asgi import get_asgi_application
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'event_networking.settings')
 
 application = get_asgi_application()
+=======
+"""
+ASGI config for event_networking project.
+
+It exposes the ASGI callable as a module-level variable named ``application``.
+
+For more information on this file, see
+https://docs.djangoproject.com/en/5.2/howto/deployment/asgi/
+"""
+
+import os
+
+from django.core.asgi import get_asgi_application
+
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'event_networking.settings')
+
+application = get_asgi_application()
+>>>>>>> ce9b6cf0d7419a255b6a02052dd9479b3d9629be

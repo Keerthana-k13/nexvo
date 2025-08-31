@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
@@ -9,4 +10,17 @@ urlpatterns = [
 ]
 
 if settings.DEBUG:
+=======
+from django.contrib import admin
+from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('events.urls')),
+]
+
+if settings.DEBUG:
+>>>>>>> ce9b6cf0d7419a255b6a02052dd9479b3d9629be
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
